@@ -7,7 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "instrument": "gulp instrument --max_old_space_size=8192",
+    "lite-server": "lite-server -c bs-config.json",
+    "coverage": "npm run instrument && forever stopall && forever start node_modules/gulp/bin/gulp.js start && protractor-flake --parser standard --max-attempts=1 -- e2e/protractor.conf.js && forever stopall && gulp report"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +22,10 @@
     "@angular/platform-browser": "~11.2.9",
     "@angular/platform-browser-dynamic": "~11.2.9",
     "@angular/router": "~11.2.9",
+    "forever-monitor": "^3.0.3",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-run-command": "0.0.10",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
@@ -30,6 +37,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "forever": "^3.0.4",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.1.0",
@@ -37,7 +45,10 @@
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "lite-server": "^2.6.1",
+    "nyc": "^15.1.0",
     "protractor": "~7.0.0",
+    "protractor-flake": "^4.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.1.5"
